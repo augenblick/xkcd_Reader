@@ -1,0 +1,9 @@
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\bin\Debug\xkcdPresenter.exe.config
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\bin\Debug\xkcdPresenter.exe
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\bin\Debug\xkcdPresenter.pdb
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.csprojAssemblyReference.cache
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.Form1.resources
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.Properties.Resources.resources
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.csproj.GenerateResource.cache
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.exe
+C:\Users\Nathan\source\repos\xkcdPresenter\xkcdPresenter\obj\Debug\xkcdPresenter.pdb
