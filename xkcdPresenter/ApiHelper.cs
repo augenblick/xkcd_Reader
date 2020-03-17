@@ -18,28 +18,45 @@ namespace xkcdPresenter
 
         public ApiHelper()
         {
-            if (xkcdClient != null)
+            if (xkcdClient == null)
             {
                 xkcdClient = new HttpClient();
-                xkcdClient.BaseAddress = new Uri("http://xkcd.com/");
                 xkcdClient.DefaultRequestHeaders.Clear();
                 xkcdClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             }
 
         }
 
-        public async Task retrieveXkcd(int comicNumber)
+        public async Task<Comic> retrieveXkcd(int comicNumber)
         {
+            string currUri = String.Empty;
+
             // retrieve comic object
             if (comicNumber > 0)
             {
-                
+                currUri = $"http://xkcd.com/{comicNumber}/info.0.json";
             }
 
             else
             {
-
+                currUri = $"http://xkcd.com/info.0.json";
             }
+
+            using (HttpResponseMessage response = await xkcdClient.GetAsync(currUri))
+            {
+                System.Diagnostics.Debug.WriteLine(response.Content);
+                if (response.IsSuccessStatusCode)
+                {
+                    System.Diagnostics.Debug.WriteLine("retrieved comic");
+                    Comic currentComic = await response.Content.ReadAsAsync<Comic>();
+                    return currentComic;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+            
         }
 
             
