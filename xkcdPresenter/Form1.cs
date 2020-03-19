@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,14 +21,13 @@ namespace xkcdPresenter
         public Form1()
         {
             InitializeComponent();
-            updateComic();
         }
 
         private async void buttonPrev_Click(object sender, EventArgs e)
         {
             if (buttonPrev.Enabled)
             {
-               await updateComic(currentComicNumber - 1);
+                await updateComic(currentComicNumber - 1);
             }
         }
 
@@ -35,7 +35,12 @@ namespace xkcdPresenter
         {
             Random rand = new Random();
 
-            int randInt = rand.Next(1, maxComicNumber + 1);
+            int randInt;
+            do {
+                randInt = rand.Next(1, maxComicNumber + 1);
+            }
+            while (randInt == currentComicNumber);
+
             await updateComic(randInt);
             return;
         }
@@ -48,8 +53,16 @@ namespace xkcdPresenter
             }
         }
 
+        private async void onLoad(object sender, EventArgs e)
+        {
+            await updateComic();
+        }
+
         private async Task updateComic(int comicNumber = 0)
         {
+            buttonPrev.Enabled = false;
+            buttonNext.Enabled = false;
+
             ApiHelper xkcdHelper = new ApiHelper();
             try
             {
@@ -65,25 +78,35 @@ namespace xkcdPresenter
                 currentComicNumber = currentComic.Num;
 
                 // enable or disable buttons if necessary
-                if (currentComicNumber == 1)
-                {
-                    buttonPrev.Enabled = false;
-                }
-                else
+                if (currentComicNumber > 1)
                 {
                     buttonPrev.Enabled = true;
                 }
-                if (currentComicNumber == maxComicNumber)
-                {
-                    buttonNext.Enabled = false;
-                }
-                else
+
+                if (currentComicNumber < maxComicNumber)
                 {
                     buttonNext.Enabled = true;
                 }
 
+
                 labelTitle.Text = $"#{currentComic.Num}: {currentComic.Title}";
-                //pictureComic.LoadAsync(currentComic.Image.ToString());
+
+                Console.WriteLine($"Attempting to import image: {currentComic.Img}");
+                if (currentComic.Img != null)
+                {
+                    try
+                    {
+                        
+                        Image comicImage = imageFromUri(currentComic.Img);
+                        //pictureComic.MaximumSize = comicImage.Size;
+                        
+                        pictureComic.Image = imageFromUri(currentComic.Img);
+                    }
+                    catch (Exception e)
+                    {
+                        labelTitle.Text = "Could not load comic";
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -91,5 +114,18 @@ namespace xkcdPresenter
             }
 
         }
+
+        private Image imageFromUri(Uri imageUri)
+        {
+            using (WebClient wc = new WebClient())
+            {
+
+                Image curImage = new Bitmap(wc.OpenRead(imageUri));
+                return curImage;
+
+            }
+            
+        }
+
     }
 }

@@ -38,19 +38,24 @@
             // 
             // pictureComic
             // 
+            this.pictureComic.AccessibleDescription = "afdsfdsafdsaf";
+            this.pictureComic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureComic.Location = new System.Drawing.Point(12, 12);
             this.pictureComic.Name = "pictureComic";
             this.pictureComic.Size = new System.Drawing.Size(776, 344);
+            this.pictureComic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureComic.TabIndex = 0;
             this.pictureComic.TabStop = false;
             // 
             // labelTitle
             // 
-            this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelTitle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelTitle.AutoSize = true;
             this.labelTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelTitle.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.labelTitle.Location = new System.Drawing.Point(12, 368);
+            this.labelTitle.Location = new System.Drawing.Point(279, 372);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelTitle.Size = new System.Drawing.Size(61, 15);
@@ -60,6 +65,7 @@
             // 
             // buttonPrev
             // 
+            this.buttonPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonPrev.Location = new System.Drawing.Point(277, 401);
             this.buttonPrev.Name = "buttonPrev";
             this.buttonPrev.Size = new System.Drawing.Size(75, 23);
@@ -70,6 +76,7 @@
             // 
             // buttonNext
             // 
+            this.buttonNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonNext.Location = new System.Drawing.Point(465, 401);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(75, 23);
@@ -80,6 +87,7 @@
             // 
             // buttonRand
             // 
+            this.buttonRand.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonRand.Location = new System.Drawing.Point(371, 401);
             this.buttonRand.Name = "buttonRand";
             this.buttonRand.Size = new System.Drawing.Size(75, 23);
@@ -99,7 +107,8 @@
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.pictureComic);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "XKCD Browser";
+            this.Load += new System.EventHandler(this.onLoad);
             ((System.ComponentModel.ISupportInitialize)(this.pictureComic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
